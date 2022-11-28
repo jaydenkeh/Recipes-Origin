@@ -21,7 +21,7 @@ export default function RecipeSearchSingle() {
           `https://api.spoonacular.com/recipes/${params.id}/nutritionWidget.png`,
           {
             params: {
-              apiKey: API_KEY,
+              apiKey: API_KEY2,
             },
           }
         );
@@ -37,7 +37,7 @@ export default function RecipeSearchSingle() {
     const fetchRecipeInfo = async () => {
       try {
         const response = await axios.get(
-          `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${API_KEY}`
+          `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${API_KEY2}`
         );
         setRecipe(response.data);
         console.log(response.data);

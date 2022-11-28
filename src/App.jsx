@@ -1,8 +1,9 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import RecipeSearchContainer from "./Components/Recipe/RecipeSearch/RecipeSearchContainer";
 import RecipeSearchSingle from "./Components/Recipe/RecipeSearch/RecipeSearchSingle";
+import SavedRecipes from "./Components/Recipe/RecipeSearch/SavedRecipes";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -81,6 +82,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<RecipeSearchContainer />} />
         <Route path="/recipe/:id" element={<RecipeSearchSingle />} />
+        <Route path="/savedrecipes" element={<SavedRecipes />} />
         {/* <RecipeIngredientContainer /> */}
       </Routes>
     </div>
