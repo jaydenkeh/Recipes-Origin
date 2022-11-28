@@ -11,29 +11,35 @@ export default function RecipeIngredients({ recipe }) {
 
   return (
     <div className="recipe-ingredients">
-      <div className="servings">{recipe.servings} servings</div>
-      <ToggleButtonGroup
-        color="primary"
-        value={measure}
-        exclusive
-        onChange={handleToggle}
-        aria-label="Platform"
-      >
-        <ToggleButton value="us">US</ToggleButton>
-        <ToggleButton value="metric">METRIC</ToggleButton>
-      </ToggleButtonGroup>
-      <ul>
-        {recipe?.extendedIngredients?.map((d, i) => {
-          return (
-            <li key={i}>
-              {d.measures[measure].amount % 1 !== 0
-                ? Math.ceil(d.measures[measure].amount)
-                : d.measures[measure].amount}{" "}
-              {d.measures[measure].unitLong} {d.name}
-            </li>
-          );
-        })}
-      </ul>
+      <div className="recipe-ingredients-wrapper">
+        <div className="servings">{recipe.servings} servings</div>
+        <div className="toggle-button">
+          <ToggleButtonGroup
+            color="primary"
+            value={measure}
+            exclusive
+            onChange={handleToggle}
+            aria-label="Platform"
+          >
+            <ToggleButton value="us">US</ToggleButton>
+            <ToggleButton value="metric">METRIC</ToggleButton>
+          </ToggleButtonGroup>
+        </div>
+      </div>
+      <div className="ingredients">
+        <ul>
+          {recipe?.extendedIngredients?.map((d, i) => {
+            return (
+              <li key={i}>
+                {d.measures[measure].amount % 1 !== 0
+                  ? Math.ceil(d.measures[measure].amount)
+                  : d.measures[measure].amount}{" "}
+                {d.measures[measure].unitLong} {d.name}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }

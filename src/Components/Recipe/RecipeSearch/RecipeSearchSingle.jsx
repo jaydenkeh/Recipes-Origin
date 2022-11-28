@@ -94,7 +94,9 @@ export default function RecipeSearchSingle() {
       <Divider>
         <Chip label="Directions" />
       </Divider>
-      <p dangerouslySetInnerHTML={{ __html: recipe.instructions }}></p>
+      <div className="directions">
+        <p dangerouslySetInnerHTML={{ __html: recipe.instructions }}></p>
+      </div>
       <Divider>
         <Chip label="Nutrition Facts" />
       </Divider>
