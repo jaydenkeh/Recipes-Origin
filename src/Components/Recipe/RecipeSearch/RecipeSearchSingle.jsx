@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import RecipeIngredients from "./RecipeIngredients";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
-import RecipeIngredients from "./RecipeIngredients";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import TurnedInNotIcon from "@mui/icons-material/TurnedInNot";
+import TurnedInIcon from "@mui/icons-material/TurnedIn";
 
-export default function RecipeSearchSingle() {
+export default function RecipeSearchSingle({ addToFavorite }) {
   const [nutritionImage, setNutritionImage] = useState("");
   const [recipe, setRecipe] = useState("");
   const params = useParams();
 
-  const API_KEY = "183a2db63a2541348149f88b22f8870f";
+  const API_KEY = import.meta.env.VITE_API_KEY;
   const API_KEY2 = import.meta.env.VITE_API_KEY2;
-  const API_KEY3 = "4423f871ebd2424e8b1b80a9946595d4";
+  const API_KEY3 = import.meta.env.VITE_API_KEY3;
 
   useEffect(() => {
     const fetchNutrition = async () => {
@@ -21,7 +25,7 @@ export default function RecipeSearchSingle() {
           `https://api.spoonacular.com/recipes/${params.id}/nutritionWidget.png`,
           {
             params: {
-              apiKey: API_KEY3,
+              apiKey: API_KEY,
             },
           }
         );
@@ -37,7 +41,7 @@ export default function RecipeSearchSingle() {
     const fetchRecipeInfo = async () => {
       try {
         const response = await axios.get(
-          `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${API_KEY3}`
+          `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${API_KEY}`
         );
         setRecipe(response.data);
         console.log(response.data);
@@ -62,6 +66,18 @@ export default function RecipeSearchSingle() {
   return (
     <div className="singleRecipe">
       <div className="recipe-main-info">
+        <div className="save-recipe">
+          <Stack direction="row" spacing={2}>
+            <Button
+              variant="outlined"
+              startIcon={<TurnedInNotIcon />}
+              sx={{ minWidth: "180px" }}
+              onClick={() => addToFavorite(recipe)}
+            >
+              Save Recipe
+            </Button>
+          </Stack>
+        </div>
         <div className="recipe-info">
           <div className="recipe-title">
             <h2>{recipe?.title}</h2>

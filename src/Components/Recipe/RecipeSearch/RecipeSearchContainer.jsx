@@ -8,16 +8,15 @@ export default function RecipeSearchContainer() {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
 
-  const API_KEY = "183a2db63a2541348149f88b22f8870f";
-  // const API_KEY = import.meta.env.VITE_API_KEY;
+  const API_KEY = import.meta.env.VITE_API_KEY;
   const API_KEY2 = import.meta.env.VITE_API_KEY2;
-  const API_KEY3 = "4423f871ebd2424e8b1b80a9946595d4";
+  const API_KEY3 = import.meta.env.VITE_API_KEY3;
 
   useEffect(() => {
     const handleSearchQuery = async () => {
       try {
         const response = await axios.get(
-          `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY3}`,
+          `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}`,
           {
             params: {
               query: search,
