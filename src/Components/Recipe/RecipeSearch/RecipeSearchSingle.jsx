@@ -9,14 +9,34 @@ import Stack from "@mui/material/Stack";
 import TurnedInNotIcon from "@mui/icons-material/TurnedInNot";
 import TurnedInIcon from "@mui/icons-material/TurnedIn";
 
-export default function RecipeSearchSingle({ addToFavorite }) {
+export default function RecipeSearchSingle({
+  favorites,
+  addToFavorite,
+  deleteFromFavorite,
+}) {
   const [nutritionImage, setNutritionImage] = useState("");
   const [recipe, setRecipe] = useState("");
   const params = useParams();
+  const [cansave, setCanSave] = useState(true);
 
   const API_KEY = import.meta.env.VITE_API_KEY;
   const API_KEY2 = import.meta.env.VITE_API_KEY2;
   const API_KEY3 = import.meta.env.VITE_API_KEY3;
+
+  useEffect(() => {
+    const fetchRecipeInfo = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${API_KEY}`
+        );
+        setRecipe(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchRecipeInfo();
+  }, [params.id]);
 
   useEffect(() => {
     const fetchNutrition = async () => {
@@ -37,21 +57,6 @@ export default function RecipeSearchSingle({ addToFavorite }) {
     fetchNutrition();
   }, [params.id]);
 
-  useEffect(() => {
-    const fetchRecipeInfo = async () => {
-      try {
-        const response = await axios.get(
-          `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${API_KEY}`
-        );
-        setRecipe(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchRecipeInfo();
-  }, [params.id]);
-
   const uppCaseFirstLetter = (arr) => {
     return arr
       .map((str) =>
@@ -63,21 +68,30 @@ export default function RecipeSearchSingle({ addToFavorite }) {
       .join(", ");
   };
 
+  useEffect(() => {
+    function setButtonState() {
+      favorites.forEach((data) => {
+        if (data.id === recipe.id) {
+          setCanSave(false);
+        }
+      });
+    }
+    setButtonState();
+  }, [recipe]);
+
+  const handleSave = (recipe) => {
+    if (cansave === true) {
+      addToFavorite(recipe);
+      setCanSave(false);
+    } else if (cansave === false) {
+      deleteFromFavorite(recipe);
+      setCanSave(true);
+    }
+  };
+
   return (
     <div className="singleRecipe">
       <div className="recipe-main-info">
-        <div className="save-recipe">
-          <Stack direction="row" spacing={2}>
-            <Button
-              variant="outlined"
-              startIcon={<TurnedInNotIcon />}
-              sx={{ minWidth: "180px" }}
-              onClick={() => addToFavorite(recipe)}
-            >
-              Save Recipe
-            </Button>
-          </Stack>
-        </div>
         <div className="recipe-info">
           <div className="recipe-title">
             <h2>{recipe?.title}</h2>
@@ -95,14 +109,41 @@ export default function RecipeSearchSingle({ addToFavorite }) {
               {recipe?.dishTypes ? uppCaseFirstLetter(recipe?.dishTypes) : " "}
             </div>
           </div>
+          <div className="save-recipe">
+            <Stack direction="row" spacing={2}>
+              <Button
+                variant="outlined"
+                startIcon={
+                  cansave === true ? <TurnedInNotIcon /> : <TurnedInIcon />
+                }
+                sx={
+                  cansave === true
+                    ? { backgroundColor: "white", minWidth: "180px" }
+                    : {
+                        backgroundColor: "#1a6bdb",
+                        color: "white",
+                        minWidth: "180px",
+                        "&:hover": {
+                          color: "#1a6bdb",
+                        },
+                      }
+                }
+                onClick={() => handleSave(recipe)}
+              >
+                {cansave === true ? "Save Recipe" : "Unsave Recipe"}
+              </Button>
+            </Stack>
+          </div>
         </div>
         <div className="recipe-image">
           <img
             src={recipe?.image}
+            alt={recipe?.title}
             style={{ borderRadius: "8px", maxWidth: "450px" }}
           />
         </div>
       </div>
+      <br />
       <Divider>
         <Chip label="Ingredients" />
       </Divider>
@@ -117,9 +158,8 @@ export default function RecipeSearchSingle({ addToFavorite }) {
         <Chip label="Nutrition Facts" />
       </Divider>
       <div className="recipe-nutrition-image">
-        <img src={nutritionImage} />
+        <img src={nutritionImage} alt="nutritionfacts" />
       </div>
-      {/* <div className="recipeTasteImage"></div> to be considered */}
     </div>
   );
 }

@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import RecipeSearchContainer from "./Components/Recipe/RecipeSearch/RecipeSearchContainer";
 import RecipeSearchSingle from "./Components/Recipe/RecipeSearch/RecipeSearchSingle";
 import SavedRecipes from "./Components/Recipe/RecipeSearch/SavedRecipes";
-import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import CssBaseline from "@mui/material/CssBaseline";
-import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import SavedSearchIcon from "@mui/icons-material/SavedSearch";
+import SearchIcon from "@mui/icons-material/Search";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 import ArticleIcon from "@mui/icons-material/Article";
 
@@ -26,10 +23,25 @@ export default function App() {
     setFavorites([...favorites, recipe]);
   };
 
-  // deleteToFavorite = (id) => {
-  //   const hapus = this.state.booksfav.filter((item) => item.id !== id);
-  //   this.setState({ booksfav: hapus });
-  // };
+  const deleteFromFavorite = (recipe) => {
+    const newFavoriteList = favorites.filter(
+      (favorite) => favorite.id !== recipe.id
+    );
+    setFavorites(newFavoriteList);
+  };
+
+  useEffect(() => {
+    const savedRecipesFromLocalStorage = JSON.parse(
+      localStorage.getItem("savedrecipes")
+    );
+    if (savedRecipesFromLocalStorage !== null) {
+      setFavorites(savedRecipesFromLocalStorage);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("savedrecipes", JSON.stringify(favorites));
+  }, [favorites]);
 
   return (
     <>
@@ -47,11 +59,21 @@ export default function App() {
       >
         <Toolbar />
         <List>
+          <Link to="/">
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <SearchIcon />
+                </ListItemIcon>
+                <ListItemText primary="Search Recipes" />
+              </ListItemButton>
+            </ListItem>
+          </Link>
           <Link to="/savedrecipes">
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  <SavedSearchIcon />
+                  <FavoriteIcon />
                 </ListItemIcon>
                 <ListItemText primary="Saved Recipes" />
               </ListItemButton>
@@ -81,13 +103,23 @@ export default function App() {
           <Route path="/" element={<RecipeSearchContainer />} />
           <Route
             path="/recipe/:id"
-            element={<RecipeSearchSingle addToFavorite={addToFavorite} />}
+            element={
+              <RecipeSearchSingle
+                addToFavorite={addToFavorite}
+                deleteFromFavorite={deleteFromFavorite}
+                favorites={favorites}
+              />
+            }
           />
           <Route
             path="/savedrecipes"
-            element={<SavedRecipes favorites={favorites} />}
+            element={
+              <SavedRecipes
+                favorites={favorites}
+                deleteFromFavorite={deleteFromFavorite}
+              />
+            }
           />
-          {/* <RecipeIngredientContainer /> */}
         </Routes>
       </div>
     </>

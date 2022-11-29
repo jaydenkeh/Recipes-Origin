@@ -36,9 +36,15 @@ export default function RecipeSearchContainer() {
 
   return (
     <div>
-      <h3>What would you like to cook today?</h3>
+      <h2>What would you like to cook today?</h2>
       <RecipeSearchMain setSearch={setSearch} />
-      <h4>Recipes Just For You</h4>
+      <div className="search-results-title">
+        <h3>
+          {search === ""
+            ? "Top Favorite Recipes Just For You"
+            : `Recipes search for: ${search}`}
+        </h3>
+      </div>
       <RecipeSearchResults results={results} />
     </div>
   );
