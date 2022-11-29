@@ -24,38 +24,37 @@ export default function RecipeSearchSingle({
   const API_KEY3 = import.meta.env.VITE_API_KEY3;
 
   useEffect(() => {
-    const fetchRecipeInfo = async () => {
-      try {
-        const response = await axios.get(
-          `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${API_KEY}`
-        );
-        setRecipe(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     fetchRecipeInfo();
-  }, [params.id]);
-
-  useEffect(() => {
-    const fetchNutrition = async () => {
-      try {
-        const response = await axios.get(
-          `https://api.spoonacular.com/recipes/${params.id}/nutritionWidget.png`,
-          {
-            params: {
-              apiKey: API_KEY,
-            },
-          }
-        );
-        setNutritionImage(response.request.responseURL);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     fetchNutrition();
   }, [params.id]);
+
+  const fetchRecipeInfo = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${API_KEY}`
+      );
+      setRecipe(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchNutrition = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.spoonacular.com/recipes/${params.id}/nutritionWidget.png`,
+        {
+          params: {
+            apiKey: API_KEY,
+          },
+        }
+      );
+      setNutritionImage(response.request.responseURL);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const uppCaseFirstLetter = (arr) => {
     return arr
@@ -152,7 +151,16 @@ export default function RecipeSearchSingle({
         <Chip label="Directions" />
       </Divider>
       <div className="directions">
-        <p dangerouslySetInnerHTML={{ __html: recipe.instructions }}></p>
+        {recipe?.instructions !== null ||
+        recipe?.instructions !== "" ||
+        recipe?.instructions !== undefined ? (
+          <p dangerouslySetInnerHTML={{ __html: recipe.instructions }}></p>
+        ) : (
+          <p>
+            Please check out <a href={recipe.sourceUrl}>{recipe.sourceUrl}</a>{" "}
+            for more information.
+          </p>
+        )}
       </div>
       <Divider>
         <Chip label="Nutrition Facts" />
