@@ -22,7 +22,7 @@ export default function RecipeSearchResults({ results }) {
   };
 
   return (
-    <div className="recipeContainer">
+    <div className="recipe-container">
       {results?.slice(0, next)?.map((d, i) => {
         return (
           <Box
@@ -31,6 +31,7 @@ export default function RecipeSearchResults({ results }) {
             onClick={() => navigate(`/recipe/${d.id}`)}
             sx={{
               width: "18%",
+              height: "360px",
               display: "inline-block",
               margin: "10px 0.5%",
               verticalAlign: "top",
@@ -42,7 +43,7 @@ export default function RecipeSearchResults({ results }) {
               },
             }}
           >
-            <div className="imageContainer">
+            <div className="image-container">
               <img
                 src={d?.image}
                 alt={d?.title}
@@ -87,13 +88,17 @@ export default function RecipeSearchResults({ results }) {
                     }
                     return null;
                   })
-                : "-"}
+                : null}
             </div>
-            {d?.readyInMinutes / 60 < 1 ? (
-              <p>Cooking Time: {d?.readyInMinutes} mins</p>
-            ) : (
-              <p>Cooking Time: {(d?.readyInMinutes / 60).toFixed(1)} hrs </p>
-            )}
+            <div className="recipe-cooking-time">
+              {d?.readyInMinutes / 60 < 1 ? (
+                <span>Cooking Time: {d?.readyInMinutes} mins</span>
+              ) : (
+                <span>
+                  Cooking Time: {(d?.readyInMinutes / 60).toFixed(1)} hrs{" "}
+                </span>
+              )}
+            </div>
           </Box>
         );
       })}

@@ -23,7 +23,11 @@ a {
 }
 
 .dietary-logo {
-  max-height: 45px;
+  max-height: 50px;
+}
+
+.recipe-cooking-time {
+  padding-top: 14px;
 }
 
 .recipe-main-info {
@@ -37,7 +41,7 @@ a {
   max-width: 300px;
 }
 
-.recipe-title {
+.recipe-single-title {
   font-size: 22px;
   margin: 0 10px 0 10px;
   max-width: 300px;
@@ -85,4 +89,30 @@ li {
 
 .servings {
   padding-left: 40px;
+}
+
+.saved-recipes {
+  display: flex;
+}
+
+.saved-recipe-title:hover {
+  cursor: pointer;
+}
+
+.remove-recipe-overlay {
+  margin-top: auto;
+  background: #9da0a6;
+  opacity: 0;
+  padding: 6px 0 6px 0;
+  text-align: center;
+  border-radius: 2px;
+}
+
+.remove-recipe {
+  color: white;
+}
+
+.one-saved-recipe:hover .remove-recipe-overlay {
+  opacity: 1;
+  cursor: pointer;
 }

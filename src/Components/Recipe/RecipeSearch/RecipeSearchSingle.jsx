@@ -89,10 +89,10 @@ export default function RecipeSearchSingle({
   };
 
   return (
-    <div className="singleRecipe">
+    <div className="single-recipe">
       <div className="recipe-main-info">
         <div className="recipe-info">
-          <div className="recipe-title">
+          <div className="recipe-single-title">
             <h2>{recipe?.title}</h2>
           </div>
           <div className="recipe-summary-wrapper">
