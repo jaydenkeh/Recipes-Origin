@@ -15,14 +15,15 @@ a {
   text-decoration: none;
 }
 
-.recipeContainer .singleRecipe {
-  width: 90%;
-  margin: 0 auto;
-  vertical-align: top;
+.recipe-dietary {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  padding-top: 12px;
 }
 
-.imageContainer {
-  margin: auto;
+.dietary-logo {
+  max-height: 45px;
 }
 
 .recipe-main-info {

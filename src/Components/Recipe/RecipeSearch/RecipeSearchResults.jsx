@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
+import veganLogo from "../../../assets/veganlogo.svg";
+import glutenLogo from "../../../assets/glutenfreelogo.svg";
+import lactoseLogo from "../../../assets/lactosefreelogo.svg";
 
 export default function RecipeSearchResults({ results }) {
   const recipesPerRow = 15;
@@ -16,17 +19,6 @@ export default function RecipeSearchResults({ results }) {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
       handleMoreRecipes();
     }
-  };
-
-  const uppCaseFirstLetter = (arr) => {
-    return arr
-      .map((str) =>
-        str
-          .split(" ")
-          .map((val) => val.replace(val.charAt(0), val.charAt(0).toUpperCase()))
-          .join(" ")
-      )
-      .join(", ");
   };
 
   return (
@@ -57,18 +49,46 @@ export default function RecipeSearchResults({ results }) {
                 style={{ width: "100%", borderRadius: "8px" }}
               />
             </div>
-            <p>{d?.title}</p>
-            <p>
-              Dietary:{" "}
-              {uppCaseFirstLetter(
-                d?.diets.filter(
-                  (data) =>
-                    data === "gluten free" ||
-                    data === "vegan" ||
-                    data === "diary free"
-                )
-              )}
-            </p>
+            <div className="recipe-title">{d?.title}</div>
+            <div className="recipe-dietary">
+              {d.diets.includes("vegan") ||
+              d.diets.includes("gluten free") ||
+              d.diets.includes("dairy free")
+                ? d.diets?.map((diet, i) => {
+                    if (diet === "vegan") {
+                      return (
+                        <img
+                          className="dietary-logo"
+                          src={veganLogo}
+                          alt="vegan-logo"
+                          key={i}
+                        />
+                      );
+                    }
+                    if (diet === "gluten free") {
+                      return (
+                        <img
+                          className="dietary-logo"
+                          src={glutenLogo}
+                          alt="gluten-logo"
+                          key={i}
+                        />
+                      );
+                    }
+                    if (diet === "dairy free") {
+                      return (
+                        <img
+                          className="dietary-logo"
+                          src={lactoseLogo}
+                          alt="lactose-logo"
+                          key={i}
+                        />
+                      );
+                    }
+                    return null;
+                  })
+                : "-"}
+            </div>
             {d?.readyInMinutes / 60 < 1 ? (
               <p>Cooking Time: {d?.readyInMinutes} mins</p>
             ) : (
