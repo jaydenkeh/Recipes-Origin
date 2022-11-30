@@ -16,7 +16,7 @@ export default function RecipeSearchContainer() {
     const handleSearchQuery = async () => {
       try {
         const response = await axios.get(
-          `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}`,
+          `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY2}`,
           {
             params: {
               query: search,

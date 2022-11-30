@@ -12,9 +12,6 @@ export default function SavedRecipes({ favorites, deleteFromFavorite }) {
   return (
     <div className="saved-recipes">
       <h2>Saved Recipes</h2>
-      <div className="back-to-search-recipes-btn">
-        <button onClick={() => navigate("/")}>Search For More Recipes</button>
-      </div>
       {favorites?.map((d, i) => {
         return (
           <div className="recipe" key={i}>

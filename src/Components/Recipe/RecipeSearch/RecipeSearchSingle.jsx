@@ -31,7 +31,7 @@ export default function RecipeSearchSingle({
   const fetchRecipeInfo = async () => {
     try {
       const response = await axios.get(
-        `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${API_KEY}`
+        `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${API_KEY2}`
       );
       setRecipe(response.data);
       console.log(response.data);
@@ -46,7 +46,7 @@ export default function RecipeSearchSingle({
         `https://api.spoonacular.com/recipes/${params.id}/nutritionWidget.png`,
         {
           params: {
-            apiKey: API_KEY,
+            apiKey: API_KEY2,
           },
         }
       );
@@ -97,15 +97,29 @@ export default function RecipeSearchSingle({
           </div>
           <div className="recipe-summary-wrapper">
             <div className="recipe-summary-cuisine">
-              Cuisines:{" "}
-              {recipe?.cuisines !== null ? recipe?.cuisines?.join(", ") : "-"}
+              <p>
+                Cuisines:
+                {recipe?.cuisines.length < 0
+                  ? recipe?.cuisines?.join(", ")
+                  : " N.A."}
+              </p>
             </div>
             <div className="recipe-summary-time">
-              Total Preparation Time: {recipe?.readyInMinutes} minutes
+              {recipe?.readyInMinutes / 60 < 1 ? (
+                <p>Cooking Time: {recipe?.readyInMinutes} mins</p>
+              ) : (
+                <p>
+                  Cooking Time: {(recipe?.readyInMinutes / 60).toFixed(1)} hrs
+                </p>
+              )}
             </div>
             <div className="recipe-summary-dishtypes">
-              Good for:{" "}
-              {recipe?.dishTypes ? uppCaseFirstLetter(recipe?.dishTypes) : " "}
+              <p>
+                Good for:{" "}
+                {recipe?.dishTypes
+                  ? uppCaseFirstLetter(recipe?.dishTypes)
+                  : " "}
+              </p>
             </div>
           </div>
           <div className="save-recipe">

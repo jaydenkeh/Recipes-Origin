@@ -69,7 +69,11 @@ export default function RecipeSearchResults({ results }) {
                 )
               )}
             </p>
-            <p>Est. Preparation Time: {d?.readyInMinutes} minutes</p>
+            {d?.readyInMinutes / 60 < 1 ? (
+              <p>Cooking Time: {d?.readyInMinutes} mins</p>
+            ) : (
+              <p>Cooking Time: {(d?.readyInMinutes / 60).toFixed(1)} hrs </p>
+            )}
           </Box>
         );
       })}
