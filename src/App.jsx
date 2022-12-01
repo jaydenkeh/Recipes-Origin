@@ -89,7 +89,7 @@ export default function App() {
         </List>
       </Drawer>
       <div className="App">
-        <header>Wellness In Mind</header>
+        <header>Recipes Origin</header>
         <Routes>
           <Route path="/" element={<RecipeSearchContainer />} />
           <Route

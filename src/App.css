@@ -1,9 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Press+Start+2P&family=Roboto&display=swap");
+
 #root {
   display: flex;
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-family: "Roboto", sans-serif;
 }
 
 .App {
@@ -50,11 +53,25 @@ a {
 
 .recipe-summary-wrapper {
   display: flex;
+  flex-direction: row;
+}
+
+.recipe-summary-cuisine,
+.recipe-summary-time,
+.recipe-summary-dishtypes {
+  padding: 8px;
+}
+
+.recipe-summary-cuisine-text,
+.recipe-summary-time-text,
+.recipe-summary-dishtypes-text {
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .save-recipe {
   margin: 0 auto;
-  padding-top: 36px;
+  padding-top: 22px;
 }
 
 .recipe-image {

@@ -111,7 +111,7 @@ export default function RecipeSearchSingle({
           <div className="recipe-summary-wrapper">
             <div className="recipe-summary-cuisine">
               <p>
-                Cuisines:
+                <span className="recipe-summary-cuisine-text">Cuisines:</span>{" "}
                 {Array.isArray(recipe?.cuisines) && recipe?.cuisines.length > 0
                   ? recipe?.cuisines?.join(", ")
                   : " N.A."}
@@ -119,16 +119,24 @@ export default function RecipeSearchSingle({
             </div>
             <div className="recipe-summary-time">
               {recipe?.readyInMinutes / 60 < 1 ? (
-                <p>Cooking Time: {recipe?.readyInMinutes} mins</p>
+                <p>
+                  <span className="recipe-summary-time-text">
+                    Cooking Time:
+                  </span>{" "}
+                  {recipe?.readyInMinutes} mins
+                </p>
               ) : (
                 <p>
-                  Cooking Time: {(recipe?.readyInMinutes / 60).toFixed(1)} hrs
+                  <span className="recipe-summary-time-text">
+                    Cooking Time:
+                  </span>{" "}
+                  {(recipe?.readyInMinutes / 60).toFixed(1)} hrs
                 </p>
               )}
             </div>
             <div className="recipe-summary-dishtypes">
               <p>
-                Good for:{" "}
+                <span className="recipe-summary-dishtypes-text">Good for:</span>{" "}
                 {recipe?.dishTypes
                   ? uppCaseFirstLetter(recipe?.dishTypes)
                   : " "}
@@ -171,26 +179,24 @@ export default function RecipeSearchSingle({
       </div>
       <br />
       <Divider>
-        <Chip label="Ingredients" />
+        <Chip label="Ingredients" style={{ fontSize: "18px" }} />
       </Divider>
       <RecipeIngredients recipe={recipe} />
       <Divider>
-        <Chip label="Directions" />
+        <Chip label="Directions" style={{ fontSize: "18px" }} />
       </Divider>
       <div className="directions">
-        {recipe?.instructions !== null ||
-        recipe?.instructions !== "" ||
-        recipe?.instructions !== undefined ? (
-          <p dangerouslySetInnerHTML={{ __html: recipe.instructions }}></p>
-        ) : (
+        {typeof recipe?.instructions !== "string" ? (
           <p>
             Please check out <a href={recipe.sourceUrl}>{recipe.sourceUrl}</a>{" "}
             for more information.
           </p>
+        ) : (
+          <p dangerouslySetInnerHTML={{ __html: recipe.instructions }}></p>
         )}
       </div>
       <Divider>
-        <Chip label="Nutrition Facts" />
+        <Chip label="Nutrition Facts" style={{ fontSize: "18px" }} />
       </Divider>
       <div className="recipe-nutrition-image">
         <img src={nutritionImage} alt="nutritionfacts" />
