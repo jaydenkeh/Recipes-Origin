@@ -21,7 +21,6 @@ export default function RecipeSearchSingle({
 
   const API_KEY = import.meta.env.VITE_API_KEY;
   const API_KEY2 = import.meta.env.VITE_API_KEY2;
-  const API_KEY3 = import.meta.env.VITE_API_KEY3;
 
   useEffect(() => {
     fetchRecipeInfo();
@@ -31,12 +30,17 @@ export default function RecipeSearchSingle({
   const fetchRecipeInfo = async () => {
     try {
       const response = await axios.get(
-        `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${API_KEY3}`
+        `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${API_KEY}`
       );
       setRecipe(response.data);
       console.log(response.data);
     } catch (error) {
       console.log(error);
+      const response = await axios.get(
+        `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${API_KEY2}`
+      );
+      setRecipe(response.data);
+      console.log(response.data);
     }
   };
 
@@ -46,13 +50,22 @@ export default function RecipeSearchSingle({
         `https://api.spoonacular.com/recipes/${params.id}/nutritionWidget.png`,
         {
           params: {
-            apiKey: API_KEY3,
+            apiKey: API_KEY,
           },
         }
       );
       setNutritionImage(response.request.responseURL);
     } catch (error) {
       console.log(error);
+      const response = await axios.get(
+        `https://api.spoonacular.com/recipes/${params.id}/nutritionWidget.png`,
+        {
+          params: {
+            apiKey: API_KEY2,
+          },
+        }
+      );
+      setNutritionImage(response.request.responseURL);
     }
   };
 

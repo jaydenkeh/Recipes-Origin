@@ -14,7 +14,6 @@ import ListItemText from "@mui/material/ListItemText";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
-import ArticleIcon from "@mui/icons-material/Article";
 
 export default function App() {
   const [favorites, setFavorites] = useState([]);
@@ -85,14 +84,6 @@ export default function App() {
                 <DinnerDiningIcon />
               </ListItemIcon>
               <ListItemText primary="Meal Planner (Coming Soon)" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <ArticleIcon />
-              </ListItemIcon>
-              <ListItemText primary="Articles (Coming Soon)" />
             </ListItemButton>
           </ListItem>
         </List>

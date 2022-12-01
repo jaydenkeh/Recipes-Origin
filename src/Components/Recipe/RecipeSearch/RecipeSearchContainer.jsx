@@ -10,13 +10,12 @@ export default function RecipeSearchContainer() {
 
   const API_KEY = import.meta.env.VITE_API_KEY;
   const API_KEY2 = import.meta.env.VITE_API_KEY2;
-  const API_KEY3 = import.meta.env.VITE_API_KEY3;
 
   useEffect(() => {
     const handleSearchQuery = async () => {
       try {
         const response = await axios.get(
-          `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY3}`,
+          `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}`,
           {
             params: {
               query: search,
@@ -26,9 +25,21 @@ export default function RecipeSearchContainer() {
           }
         );
         setResults(response.data.results);
-        console.log(response.data); //to check whether axios fetched the data
+        console.log(response.data);
       } catch (error) {
         console.log(error);
+        const response = await axios.get(
+          `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY2}`,
+          {
+            params: {
+              query: search,
+              addRecipeInformation: "true",
+              number: "100",
+            },
+          }
+        );
+        setResults(response.data.results);
+        console.log(response.data);
       }
     };
     handleSearchQuery();
