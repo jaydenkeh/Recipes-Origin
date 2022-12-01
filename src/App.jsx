@@ -14,6 +14,7 @@ import ListItemText from "@mui/material/ListItemText";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
+import mainLogo from "./assets/recipes-origin-main-logo.png";
 
 export default function App() {
   const [favorites, setFavorites] = useState([]);
@@ -56,7 +57,9 @@ export default function App() {
         variant="permanent"
         anchor="left"
       >
-        <Toolbar />
+        <Toolbar>
+          <img className="main-logo" src={mainLogo} alt="recipes-origin-logo" />
+        </Toolbar>
         <List>
           <Link to="/">
             <ListItem disablePadding>
@@ -89,7 +92,6 @@ export default function App() {
         </List>
       </Drawer>
       <div className="App">
-        <header>Recipes Origin</header>
         <Routes>
           <Route path="/" element={<RecipeSearchContainer />} />
           <Route
