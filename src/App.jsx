@@ -44,7 +44,7 @@ export default function App() {
   }, [favorites]);
 
   return (
-    <>
+    <div className="App">
       <Drawer
         sx={{
           width: 240,
@@ -91,30 +91,28 @@ export default function App() {
           </ListItem>
         </List>
       </Drawer>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<RecipeSearchContainer />} />
-          <Route
-            path="/recipe/:id"
-            element={
-              <RecipeSearchSingle
-                addToFavorite={addToFavorite}
-                deleteFromFavorite={deleteFromFavorite}
-                favorites={favorites}
-              />
-            }
-          />
-          <Route
-            path="/savedrecipes"
-            element={
-              <SavedRecipes
-                favorites={favorites}
-                deleteFromFavorite={deleteFromFavorite}
-              />
-            }
-          />
-        </Routes>
-      </div>
-    </>
+      <Routes>
+        <Route path="/" element={<RecipeSearchContainer />} />
+        <Route
+          path="/recipe/:id"
+          element={
+            <RecipeSearchSingle
+              addToFavorite={addToFavorite}
+              deleteFromFavorite={deleteFromFavorite}
+              favorites={favorites}
+            />
+          }
+        />
+        <Route
+          path="/savedrecipes"
+          element={
+            <SavedRecipes
+              favorites={favorites}
+              deleteFromFavorite={deleteFromFavorite}
+            />
+          }
+        />
+      </Routes>
+    </div>
   );
 }

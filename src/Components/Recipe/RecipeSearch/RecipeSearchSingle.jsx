@@ -19,7 +19,8 @@ export default function RecipeSearchSingle({
   const params = useParams();
   const [cansave, setCanSave] = useState(true);
 
-  const API_KEY = import.meta.env.VITE_API_KEY;
+  // const API_KEY = import.meta.env.VITE_API_KEY;
+  const API_KEY = "916e9dc2a9a34030b9308b512de5fba3";
   const API_KEY2 = import.meta.env.VITE_API_KEY2;
 
   useEffect(() => {
