@@ -22,6 +22,11 @@ a {
   text-decoration: none;
 }
 
+.recipe-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
 .recipe-dietary {
   display: flex;
   gap: 6px;

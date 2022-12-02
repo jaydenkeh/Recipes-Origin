@@ -14,7 +14,6 @@ export default function RecipeSearchResults({ results }) {
     setNext(next + recipesPerRow);
   };
 
-  //implement setInterval function?
   window.onscroll = function (ev) {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
       handleMoreRecipes();
