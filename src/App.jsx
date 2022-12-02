@@ -112,6 +112,10 @@ export default function App() {
             />
           }
         />
+        <Route
+          path="*"
+          element={<p>The page you are searching is not found</p>}
+        />
       </Routes>
     </div>
   );
