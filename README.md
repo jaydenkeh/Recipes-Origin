@@ -1,17 +1,23 @@
-# Recipes Origin
+<a name="readme-top"></a>
 
-## Description
+![Recipes Origin banner](https://user-images.githubusercontent.com/113533303/218633304-001fed03-979b-475f-83c1-c3bec34035d4.png)
 
-Recipes Origin is a website template built with React and Spoonacular API, to showcase my personal experiences and work that I've deployed using Vercel.
+<br />
+
+## Project Description
+
+Recipes Origin is a recipe search web application built with React and Spoonacular API to showcase my personal experiences and work that I've deployed using Vercel. The application allows users to search for recipes, with ingredients, instructions, and nutritional information on the Main page, and save to favorites the receipes in the Saved Recipes page.
 
 ### Technical Used
 
-For this project, I've used the following technologies:
+Project is built with the following technologies:
 
-- React
+- JavaScript
+- React, React Router
+- Node.JS
 - Vite
 - Material UI
-- axios for API fetch
+- Axios
 
 ## Planning and Development Process
 
@@ -31,6 +37,8 @@ For this project, I've used the following technologies:
 
 - This project was built using [Spoonacular API](https://spoonacular.com/food-api)
 
-## References
+## Contact
 
-- https://mui.com/material-ui/getting-started/overview/
+- DM me on [LinkedIn](https://www.linkedin.com/in/jaydenkeh/) to request for a demo!
+
+<p align="left">(<a href="#readme-top">back to top</a>)</p>
