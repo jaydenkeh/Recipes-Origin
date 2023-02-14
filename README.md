@@ -2,6 +2,8 @@
 
 ![Recipes Origin banner](https://user-images.githubusercontent.com/113533303/218633304-001fed03-979b-475f-83c1-c3bec34035d4.png)
 
+<p align="center">(<a href="https://recipes-origin.vercel.app/">Visit app</a>)</p>
+
 ## Project Description
 
 Recipes Origin is a recipe search web application built with React and Spoonacular API to showcase my personal experiences and work that I've deployed using Vercel. The application allows users to search for recipes on the Main page, and save to favorites the receipes in the Saved Recipes page.
