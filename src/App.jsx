@@ -81,14 +81,6 @@ export default function App() {
               </ListItemButton>
             </ListItem>
           </Link>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <DinnerDiningIcon />
-              </ListItemIcon>
-              <ListItemText primary="Meal Planner (Coming Soon)" />
-            </ListItemButton>
-          </ListItem>
         </List>
       </Drawer>
       <Routes>
