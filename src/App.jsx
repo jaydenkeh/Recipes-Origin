@@ -13,7 +13,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 import mainLogo from "./assets/recipes-origin-main-logo.png";
 
 export default function App() {
