@@ -156,7 +156,7 @@ li {
   border-radius: 50px;
   outline: none;
   font-size: 16px;
-  color: black;
+  color: #6e6e6a;
   font-weight: bold;
 }
 
@@ -176,4 +176,31 @@ li {
   background: white;
   color: #c7580d;
   border: 2px solid #c7580d;
+}
+
+.main-header h2 {
+  font-size: 40px;
+  font-weight: 700;
+  background-image: radial-gradient(ellipse, #ee4b2b, #ede98e);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.search-results-header h3 {
+  font-size: 24px;
+  font-weight: 600;
+  background-image: radial-gradient(circle, #ee4b2b, #ede98e);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.saved-recipes-header h3 {
+  font-size: 24px;
+  font-weight: 600;
+  background-image: radial-gradient(circle, #ee4b2b, #ede98e);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
 }

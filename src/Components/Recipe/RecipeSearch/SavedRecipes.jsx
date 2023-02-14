@@ -11,7 +11,9 @@ export default function SavedRecipes({ favorites, deleteFromFavorite }) {
 
   return (
     <>
-      <h3>Saved Recipes</h3>
+      <div className="saved-recipes-header">
+        <h3>Saved Recipes</h3>
+      </div>
       <div className="saved-recipes">
         {favorites?.map((d, i) => {
           return (

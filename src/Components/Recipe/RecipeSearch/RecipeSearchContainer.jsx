@@ -46,10 +46,12 @@ export default function RecipeSearchContainer() {
   }, [search]);
 
   return (
-    <div>
-      <h2>What would you like to cook today?</h2>
+    <>
+      <div className="main-header">
+        <h2>What would you like to cook today?</h2>
+      </div>
       <RecipeSearchMain setSearch={setSearch} />
-      <div className="search-results-title">
+      <div className="search-results-header">
         <h3>
           {search === ""
             ? "Top Favorite Recipes Just For You"
@@ -57,6 +59,6 @@ export default function RecipeSearchContainer() {
         </h3>
       </div>
       <RecipeSearchResults results={results} />
-    </div>
+    </>
   );
 }
