@@ -142,3 +142,38 @@ li {
   opacity: 1;
   cursor: pointer;
 }
+
+.search-bar-container {
+  position: relative;
+  padding: 10px 50px;
+}
+
+.search-input {
+  width: 280px;
+  border: 1px solid #c7580d;
+  background: transparent;
+  padding: 15px 30px;
+  border-radius: 50px;
+  outline: none;
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+}
+
+.search-button {
+  width: 80px;
+  height: 60px;
+  border-radius: 100px;
+  border: 2px solid white;
+  background: #c7580d;
+  color: white;
+  margin-left: 4px;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background: white;
+  color: #c7580d;
+  border: 2px solid #c7580d;
+}
