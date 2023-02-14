@@ -28,8 +28,6 @@ Project is built with the following technologies:
 - [x] Create Single Recipe Result page
 - [x] Create Saved Recipes page
 - [x] Update Main page with Logo and website favicon
-- [x] Update CSS of project
-- [x] Update README
 
 ## API Used
 
